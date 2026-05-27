@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>JT-OTA スマートフォンモック</title>
-    <link rel="stylesheet" href="styles.css?v=20260527-mobile-ja" />
+    <link rel="stylesheet" href="styles.css?v=20260527-ai-planner" />
   </head>
   <body>
     <main class="prototype-stage" aria-label="JT-OTA smartphone app mock">
@@ -85,27 +85,46 @@
             <div class="section-title-row">
               <div>
                 <p class="eyebrow">来日前</p>
-                <h2>旅程プラン作成</h2>
+                <h2>AI旅程プランナー</h2>
               </div>
-              <span class="step">1/4</span>
+              <span class="step" id="plannerProgress">1/5</span>
             </div>
 
-            <p class="panel-copy">興味のあるテーマを選ぶと、専属コンシェルジュが提案を作成します。</p>
-            <div class="choice-grid">
-              <button class="choice active" type="button">伝統文化</button>
-              <button class="choice" type="button">美食</button>
-              <button class="choice" type="button">買い物</button>
-              <button class="choice" type="button">アート</button>
-              <button class="choice" type="button">温泉</button>
-              <button class="choice" type="button">家族旅行</button>
+            <p class="panel-copy">
+              AIコンシェルジェが会話形式でヒアリングし、人数・好み・都市・美食・予算に合わせた
+              オーダーメイド旅程を提案します。
+            </p>
+
+            <div class="ai-planner-card" aria-label="AI会話型プラン作成">
+              <div class="ai-chat" id="plannerChat" aria-live="polite">
+                <div class="ai-message ai">
+                  <span>AI Concierge</span>
+                  <p>ようこそ。まず、ご旅行の人数を教えてください。</p>
+                </div>
+              </div>
+              <div class="ai-options" id="plannerOptions" aria-label="回答候補"></div>
             </div>
 
-            <div class="input-list">
-              <div><span>都市</span><strong>東京、京都、直島</strong></div>
-              <div><span>人数</span><strong>大人2名</strong></div>
-              <div><span>移動</span><strong>専用車中心</strong></div>
-              <div><span>予算</span><strong>プレミアム</strong></div>
+            <div class="ai-summary-grid" aria-label="ヒアリング内容">
+              <div data-summary="guests"><span>人数</span><strong>未選択</strong></div>
+              <div data-summary="preference"><span>旅の好み</span><strong>未選択</strong></div>
+              <div data-summary="cities"><span>行きたい都市</span><strong>未選択</strong></div>
+              <div data-summary="cuisine"><span>日本美食</span><strong>未選択</strong></div>
+              <div data-summary="budget"><span>予算</span><strong>未選択</strong></div>
             </div>
+
+            <div class="ai-proposal" id="plannerProposal" hidden>
+              <p class="eyebrow">AI提案プラン</p>
+              <h3>7日間 プレミアム日本滞在</h3>
+              <ul>
+                <li>東京：到着日専用車送迎、銀座ショッピング、寿司または鉄板焼き</li>
+                <li>京都：非公開寺院、茶道体験、祇園の懐石ディナー</li>
+                <li>直島：アート鑑賞、専属ガイド、帰路のお土産配送手配</li>
+              </ul>
+              <button class="full-button" type="button">このプランでコンシェルジェに相談</button>
+            </div>
+
+            <button class="text-button" id="plannerReset" type="button" hidden>最初から作り直す</button>
           </section>
 
           <section class="panel" id="concierge">
@@ -241,6 +260,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=20260527-mobile-ja"></script>
+    <script src="script.js?v=20260527-ai-planner"></script>
   </body>
 </html>
