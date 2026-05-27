@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>JT-OTA スマートフォンモック</title>
-    <link rel="stylesheet" href="styles.css?v=20260527-guide-design" />
+    <link rel="stylesheet" href="styles.css?v=20260527-line-real-guides" />
   </head>
   <body>
     <main class="prototype-stage" aria-label="JT-OTA smartphone app mock">
@@ -106,46 +106,39 @@
             </article>
           </section>
 
-          <section class="app-screen" id="screen-plan" data-screen="plan" aria-label="AI旅程プランナー画面">
-            <article class="panel">
-              <div class="section-title-row">
+          <section class="app-screen" id="screen-plan" data-screen="plan" aria-label="AI旅程プランナー会話画面">
+            <article class="line-planner" aria-label="LINE風AIコンシェルジュ会話">
+              <div class="line-chat-header">
+                <span class="concierge-photo" aria-hidden="true">AI</span>
                 <div>
-                  <p class="eyebrow">Pre-arrival Planning</p>
-                  <h2>AI旅程プランナー</h2>
+                  <p class="eyebrow">AI Concierge</p>
+                  <h2>旅程設計チャット</h2>
+                  <small>オンライン・複数回答対応</small>
                 </div>
-                <span class="step" id="plannerProgress">1/5</span>
+                <span class="step" id="plannerProgress">1/9</span>
               </div>
 
-              <p class="panel-copy">
-                AIコンシェルジェが会話形式でヒアリングし、人数・好み・都市・美食・予算に合わせた
-                オーダーメイド旅程を提案します。
-              </p>
-
-              <div class="ai-planner-card" aria-label="AI会話型プラン作成">
-                <div class="ai-chat" id="plannerChat" aria-live="polite">
-                  <div class="ai-message ai">
-                    <span>AI Concierge</span>
-                    <p>ようこそ。まず、ご旅行の人数を教えてください。</p>
-                  </div>
+              <div class="line-chat-body" id="plannerChat" aria-live="polite">
+                <div class="line-message ai">
+                  <span>AI Concierge</span>
+                  <p>こんにちは。LINEのように会話しながら、上質な日本滞在プランを設計します。まず、ご旅行の人数を教えてください。</p>
                 </div>
-                <div class="ai-options" id="plannerOptions" aria-label="回答候補"></div>
               </div>
 
-              <div class="ai-summary-grid" aria-label="ヒアリング内容">
-                <div data-summary="guests"><span>人数</span><strong>未選択</strong></div>
-                <div data-summary="preference"><span>旅の好み</span><strong>未選択</strong></div>
-                <div data-summary="cities"><span>行きたい都市</span><strong>未選択</strong></div>
-                <div data-summary="cuisine"><span>日本美食</span><strong>未選択</strong></div>
-                <div data-summary="budget"><span>予算</span><strong>未選択</strong></div>
+              <div class="line-reply-panel" aria-label="回答メニュー">
+                <p id="plannerQuestionHint">回答を選択してください</p>
+                <div class="line-quick-replies" id="plannerOptions" aria-label="回答候補"></div>
+                <button class="line-confirm" id="plannerConfirm" type="button" hidden>この回答で次へ</button>
               </div>
 
               <div class="ai-proposal" id="plannerProposal" hidden>
                 <p class="eyebrow">AI提案プラン</p>
-                <h3>7日間 プレミアム日本滞在</h3>
+                <h3>プレミアム日本滞在プラン</h3>
+                <p id="plannerProposalText">ヒアリング内容をもとに、旅程案を作成します。</p>
                 <ul>
-                  <li>東京：到着日専用車送迎、銀座ショッピング、寿司または鉄板焼き</li>
-                  <li>京都：非公開寺院、茶道体験、祇園の懐石ディナー</li>
-                  <li>直島：アート鑑賞、AIガイド解説、帰国後のお土産配送手配</li>
+                  <li>専用車・上質ホテル・AIガイド解説を組み合わせた移動設計</li>
+                  <li>食の好みとNG食材を反映した美食予約</li>
+                  <li>体験・買い物・帰国後配送までコンシェルジェが継続サポート</li>
                 </ul>
                 <button class="full-button" type="button" data-open-screen="guide">AIガイドを選んで旅を始める</button>
               </div>
@@ -170,40 +163,40 @@
 
               <div class="guide-selector" aria-label="AIガイドキャラクター選択">
                 <button class="guide-option active" type="button" data-guide="anime">
-                  <span class="character-portrait anime" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <img class="guide-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Luna Graceのリアルな人物ポートレート" />
                   <strong>Luna Grace</strong>
                   <em>萌え系アニメガイド</em>
-                  <small>外観：ピンクのツインテール、桜色のミニ着物ジャケット、星形イヤリング。</small>
+                  <small>外観：20代前半の明るい女性。ロングのダークブラウンヘア、淡いピンクのスカーフ、上品な白ジャケット。表情は柔らかく、ポップカルチャーにも詳しい雰囲気。</small>
                 </button>
                 <button class="guide-option" type="button" data-guide="student">
-                  <span class="character-portrait student" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <img class="guide-photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Emma Reedのリアルな人物ポートレート" />
                   <strong>Emma Reed</strong>
                   <em>若い女子大学生ガイド</em>
-                  <small>外観：柔らかなブラウンボブ、白ニット、上品なチェックストール。</small>
+                  <small>外観：親しみやすい大学生風の女性。ナチュラルなボブヘア、アイボリーのニット、チェックストール。清潔感があり、話しかけやすい印象。</small>
                 </button>
                 <button class="guide-option" type="button" data-guide="scholar">
-                  <span class="character-portrait scholar" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <img class="guide-photo" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Arthur Blakeのリアルな人物ポートレート" />
                   <strong>Arthur Blake</strong>
                   <em>博識なおじさんガイド</em>
-                  <small>外観：シルバーグレーの髪、丸眼鏡、ネイビージャケットと革手帳。</small>
+                  <small>外観：50代の落ち着いた男性。シルバーグレーの髪、丸眼鏡、ネイビージャケット、革の手帳。文化史を深く語る知的な雰囲気。</small>
                 </button>
                 <button class="guide-option" type="button" data-guide="traveler">
-                  <span class="character-portrait traveler" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <img class="guide-photo" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80" alt="Kai Bennettのリアルな人物ポートレート" />
                   <strong>Kai Bennett</strong>
                   <em>旅行大好き30代男性ガイド</em>
-                  <small>外観：短い黒髪、カーキのトラベルジャケット、カメラストラップ。</small>
+                  <small>外観：30代のアクティブな男性。短い黒髪、カーキのトラベルジャケット、レザーカメラストラップ。移動やローカル情報に強い印象。</small>
                 </button>
               </div>
 
               <div class="selected-guide-card">
                 <div class="guide-profile">
-                  <span class="character-portrait anime" id="selectedGuideAvatar" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <img class="selected-guide-photo" id="selectedGuideImage" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Luna Graceの選択中ポートレート" />
                   <div>
                     <p class="eyebrow">Selected Guide</p>
                     <h3 id="selectedGuideName">Luna Grace</h3>
                     <p class="guide-role" id="selectedGuideRole">萌え系アニメガイド</p>
                     <p id="selectedGuideTone">明るく、親しみやすく、写真映えポイントも交えて説明します。</p>
-                    <p class="guide-look" id="selectedGuideLook">外観：ピンクのツインテール、桜色のミニ着物ジャケット、星形イヤリング。</p>
+                    <p class="guide-look" id="selectedGuideLook">外観：20代前半の明るい女性。ロングのダークブラウンヘア、淡いピンクのスカーフ、上品な白ジャケット。表情は柔らかく、ポップカルチャーにも詳しい雰囲気。</p>
                   </div>
                 </div>
               </div>
@@ -379,6 +372,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=20260527-guide-design"></script>
+    <script src="script.js?v=20260527-line-real-guides"></script>
   </body>
 </html>

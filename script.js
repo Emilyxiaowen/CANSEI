@@ -9,13 +9,15 @@ const toast = document.querySelector("#toast");
 const plannerChat = document.querySelector("#plannerChat");
 const plannerOptions = document.querySelector("#plannerOptions");
 const plannerProgress = document.querySelector("#plannerProgress");
+const plannerConfirm = document.querySelector("#plannerConfirm");
+const plannerQuestionHint = document.querySelector("#plannerQuestionHint");
 const plannerProposal = document.querySelector("#plannerProposal");
+const plannerProposalText = document.querySelector("#plannerProposalText");
 const plannerReset = document.querySelector("#plannerReset");
-const plannerSummaryItems = document.querySelectorAll("[data-summary]");
 const guideOptions = document.querySelectorAll(".guide-option");
 const guideChat = document.querySelector("#guideChat");
 const guidePrompts = document.querySelectorAll(".guide-prompts button");
-const selectedGuideAvatar = document.querySelector("#selectedGuideAvatar");
+const selectedGuideImage = document.querySelector("#selectedGuideImage");
 const selectedGuideName = document.querySelector("#selectedGuideName");
 const selectedGuideTone = document.querySelector("#selectedGuideTone");
 const selectedGuideRole = document.querySelector("#selectedGuideRole");
@@ -27,58 +29,105 @@ let cartItems = 0;
 let toastTimer;
 let plannerStep = 0;
 let activeGuide = "anime";
+let currentMultiSelection = [];
 const plannerAnswers = {};
 
 const plannerQuestions = [
-  { key: "guests", prompt: "ありがとうございます。次に、旅の好みを教えてください。", options: ["1名", "2名", "3〜4名", "家族・グループ"] },
-  { key: "preference", prompt: "行きたい都市を選んでください。複数都市を含む候補も選べます。", options: ["伝統文化", "美食中心", "アート・建築", "温泉・癒し"] },
-  { key: "cities", prompt: "食べたい日本美食のジャンルを教えてください。", options: ["東京・京都", "東京・京都・直島", "北海道・東京", "九州・瀬戸内"] },
-  { key: "cuisine", prompt: "最後に、ご予算感を選んでください。", options: ["寿司", "懐石料理", "和牛・鉄板焼き", "日本酒・バー"] },
-  { key: "budget", prompt: "ありがとうございます。内容をもとにプランを提案します。", options: ["¥100万〜", "¥300万〜", "¥500万〜", "完全オーダーメイド"] },
+  {
+    key: "guests",
+    label: "人数",
+    text: "ご旅行の人数を教えてください。",
+    options: ["1名", "2名", "3〜4名", "家族・グループ"],
+  },
+  {
+    key: "duration",
+    label: "滞在日数",
+    text: "日本には何日間滞在されますか？",
+    options: ["3〜4日", "5〜7日", "8〜10日", "2週間以上"],
+  },
+  {
+    key: "cities",
+    label: "行きたい都市",
+    text: "行きたい都市を複数選んでください。",
+    multiple: true,
+    options: ["東京", "京都", "大阪", "直島", "北海道", "金沢", "箱根", "沖縄"],
+  },
+  {
+    key: "travelStyle",
+    label: "旅の好み",
+    text: "旅の好みを複数選んでください。",
+    multiple: true,
+    options: ["伝統文化", "美食", "アート・建築", "自然・温泉", "ショッピング", "家族向け", "ウェルネス", "ナイトライフ"],
+  },
+  {
+    key: "cuisine",
+    label: "日本美食",
+    text: "食べたい日本美食のジャンルを複数選んでください。",
+    multiple: true,
+    options: ["寿司", "懐石料理", "和牛・鉄板焼き", "天ぷら", "日本酒・バー", "ラーメン", "精進料理", "スイーツ"],
+  },
+  {
+    key: "foodRestrictions",
+    label: "食事制限",
+    text: "苦手な食材や食事制限があれば選んでください。",
+    multiple: true,
+    options: ["特になし", "甲殻類NG", "辛い料理NG", "ベジタリアン", "ハラール", "グルテンフリー", "ナッツアレルギー"],
+  },
+  {
+    key: "hotel",
+    label: "宿泊グレード",
+    text: "ホテルの希望グレードを教えてください。",
+    options: ["5つ星ホテル", "旅館スイート", "ヴィラ貸切", "コンシェルジュ提案"],
+  },
+  {
+    key: "transport",
+    label: "移動手段",
+    text: "希望する移動手段を複数選んでください。",
+    multiple: true,
+    options: ["専用車", "新幹線グリーン車", "ヘリ移動", "徒歩散策", "空港VIP送迎"],
+  },
+  {
+    key: "budget",
+    label: "予算",
+    text: "最後に、ご予算感を選んでください。",
+    options: ["¥100万〜", "¥300万〜", "¥500万〜", "完全オーダーメイド"],
+  },
 ];
-
-const summaryLabels = {
-  guests: "人数",
-  preference: "旅の好み",
-  cities: "行きたい都市",
-  cuisine: "日本美食",
-  budget: "予算",
-};
 
 const guideProfiles = {
   anime: {
-    className: "anime",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
     name: "Luna Grace",
     role: "萌え系アニメガイド",
     shortName: "Luna",
-    look: "外観：ピンクのツインテール、桜色のミニ着物ジャケット、星形イヤリング。",
+    look: "外観：20代前半の明るい女性。ロングのダークブラウンヘア、淡いピンクのスカーフ、上品な白ジャケット。表情は柔らかく、ポップカルチャーにも詳しい雰囲気。",
     tone: "明るく、親しみやすく、写真映えポイントも交えて説明します。",
     style: "かわいくテンポよく",
   },
   student: {
-    className: "student",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
     name: "Emma Reed",
     role: "若い女子大学生ガイド",
     shortName: "Emma",
-    look: "外観：柔らかなブラウンボブ、白ニット、上品なチェックストール。",
+    look: "外観：親しみやすい大学生風の女性。ナチュラルなボブヘア、アイボリーのニット、チェックストール。清潔感があり、話しかけやすい印象。",
     tone: "友達のように親しみやすく、最新のカフェや散策ルートも提案します。",
     style: "親しみやすく等身大に",
   },
   scholar: {
-    className: "scholar",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
     name: "Arthur Blake",
     role: "博識なおじさんガイド",
     shortName: "Arthur",
-    look: "外観：シルバーグレーの髪、丸眼鏡、ネイビージャケットと革手帳。",
+    look: "外観：50代の落ち着いた男性。シルバーグレーの髪、丸眼鏡、ネイビージャケット、革の手帳。文化史を深く語る知的な雰囲気。",
     tone: "歴史、宗教、美術の背景まで、深く落ち着いた語り口で説明します。",
     style: "文化背景を丁寧に",
   },
   traveler: {
-    className: "traveler",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
     name: "Kai Bennett",
     role: "旅行大好き30代男性ガイド",
     shortName: "Kai",
-    look: "外観：短い黒髪、カーキのトラベルジャケット、カメラストラップ。",
+    look: "外観：30代のアクティブな男性。短い黒髪、カーキのトラベルジャケット、レザーカメラストラップ。移動やローカル情報に強い印象。",
     tone: "実用情報、移動のコツ、現地での楽しみ方をテンポよく案内します。",
     style: "実用的で軽快に",
   },
@@ -106,64 +155,93 @@ const switchScreen = (screenName) => {
 
 const addPlannerMessage = (type, speaker, text) => {
   const message = document.createElement("div");
-  message.className = `ai-message ${type}`;
-  message.innerHTML = `<span></span><p></p>`;
+  message.className = `line-message ${type}`;
+  message.innerHTML = "<span></span><p></p>";
   message.querySelector("span").textContent = speaker;
   message.querySelector("p").textContent = text;
   plannerChat.append(message);
   message.scrollIntoView({ behavior: "smooth", block: "nearest" });
 };
 
-const updatePlannerSummary = (key, value) => {
-  const summaryItem = [...plannerSummaryItems].find((item) => item.dataset.summary === key);
-  if (summaryItem) summaryItem.querySelector("strong").textContent = value;
-};
+const formatAnswer = (answer) => Array.isArray(answer) ? answer.join("、") : answer;
 
 const renderPlannerOptions = () => {
   const question = plannerQuestions[plannerStep];
+  currentMultiSelection = [];
   plannerOptions.innerHTML = "";
+  plannerConfirm.hidden = !question.multiple;
   plannerProgress.textContent = `${plannerStep + 1}/${plannerQuestions.length}`;
+  plannerQuestionHint.textContent = question.multiple ? "複数選択できます" : "1つ選んでください";
+
   question.options.forEach((option) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "ai-option";
+    button.className = "line-reply-chip";
     button.textContent = option;
-    button.addEventListener("click", () => selectPlannerOption(option));
+
+    if (question.multiple) {
+      button.addEventListener("click", () => {
+        if (option === "特になし") {
+          currentMultiSelection = [option];
+          plannerOptions.querySelectorAll("button").forEach((item) => item.classList.toggle("active", item === button));
+          return;
+        }
+
+        currentMultiSelection = currentMultiSelection.filter((item) => item !== "特になし");
+        const selected = currentMultiSelection.includes(option);
+        currentMultiSelection = selected
+          ? currentMultiSelection.filter((item) => item !== option)
+          : [...currentMultiSelection, option];
+        button.classList.toggle("active", !selected);
+        plannerOptions.querySelectorAll("button").forEach((item) => {
+          if (item.textContent === "特になし") item.classList.remove("active");
+        });
+      });
+    } else {
+      button.addEventListener("click", () => advancePlanner(option));
+    }
+
     plannerOptions.append(button);
   });
 };
 
-const buildProposalText = () => `${plannerAnswers.guests}のお客様向けに、${plannerAnswers.cities}を巡る${plannerAnswers.preference}中心の旅程を作成しました。食体験は${plannerAnswers.cuisine}を軸に、予算は${plannerAnswers.budget}の想定で、専用車・AIガイド・帰国後配送まで含めます。`;
+const advancePlanner = (answer) => {
+  const question = plannerQuestions[plannerStep];
+  plannerAnswers[question.key] = answer;
+  addPlannerMessage("user", "You", `${question.label}：${formatAnswer(answer)}`);
+
+  if (plannerStep === plannerQuestions.length - 1) {
+    addPlannerMessage("ai", "AI Concierge", "ありがとうございます。いただいた内容をもとに、富裕層向けの上質な日本滞在プランを提案します。");
+    showPlannerProposal();
+    return;
+  }
+
+  plannerStep += 1;
+  addPlannerMessage("ai", "AI Concierge", plannerQuestions[plannerStep].text);
+  renderPlannerOptions();
+};
+
+const buildProposalText = () => {
+  const answer = (key) => formatAnswer(plannerAnswers[key] || "未選択");
+  return `${answer("guests")}・${answer("duration")}の滞在として、${answer("cities")}を中心に、${answer("travelStyle")}を重視した旅程を設計します。食体験は${answer("cuisine")}を軸に、${answer("foodRestrictions")}を反映。宿泊は${answer("hotel")}、移動は${answer("transport")}、予算は${answer("budget")}で、AIガイドとコンシェルジェサポートを組み合わせます。`;
+};
 
 const showPlannerProposal = () => {
   plannerOptions.innerHTML = "";
+  plannerConfirm.hidden = true;
+  plannerQuestionHint.textContent = "提案プランが完成しました";
   plannerProgress.textContent = "提案";
-  addPlannerMessage("ai", "AI Concierge", buildProposalText());
+  plannerProposalText.textContent = buildProposalText();
   plannerProposal.hidden = false;
   plannerReset.hidden = false;
   showToast("AI提案プランを作成しました");
 };
 
-const selectPlannerOption = (option) => {
-  const question = plannerQuestions[plannerStep];
-  plannerAnswers[question.key] = option;
-  updatePlannerSummary(question.key, option);
-  addPlannerMessage("user", "You", `${summaryLabels[question.key]}：${option}`);
-  if (plannerStep === plannerQuestions.length - 1) {
-    addPlannerMessage("ai", "AI Concierge", question.prompt);
-    showPlannerProposal();
-    return;
-  }
-  plannerStep += 1;
-  addPlannerMessage("ai", "AI Concierge", question.prompt);
-  renderPlannerOptions();
-};
-
 const resetPlanner = () => {
   plannerStep = 0;
+  currentMultiSelection = [];
   Object.keys(plannerAnswers).forEach((key) => delete plannerAnswers[key]);
-  plannerChat.innerHTML = '<div class="ai-message ai"><span>AI Concierge</span><p>ようこそ。まず、ご旅行の人数を教えてください。</p></div>';
-  plannerSummaryItems.forEach((item) => { item.querySelector("strong").textContent = "未選択"; });
+  plannerChat.innerHTML = '<div class="line-message ai"><span>AI Concierge</span><p>こんにちは。LINEのように会話しながら、上質な日本滞在プランを設計します。まず、ご旅行の人数を教えてください。</p></div>';
   plannerProposal.hidden = true;
   plannerReset.hidden = true;
   renderPlannerOptions();
@@ -174,7 +252,8 @@ const updateSelectedGuide = (guideKey) => {
   activeGuide = guideKey;
   const guide = guideProfiles[guideKey];
   guideOptions.forEach((option) => option.classList.toggle("active", option.dataset.guide === guideKey));
-  selectedGuideAvatar.className = `character-portrait ${guide.className}`;
+  selectedGuideImage.src = guide.image;
+  selectedGuideImage.alt = `${guide.name}の選択中ポートレート`;
   selectedGuideName.textContent = guide.name;
   selectedGuideRole.textContent = guide.role;
   selectedGuideTone.textContent = guide.tone;
@@ -203,6 +282,14 @@ openScreenButtons.forEach((button) => button.addEventListener("click", () => swi
 languageSelect.addEventListener("change", () => {
   const label = languageSelect.options[languageSelect.selectedIndex].textContent;
   showToast(label === "日本語" ? "日本語で表示中です" : `${label}への切り替え導線です。モック本文は日本語表示です。`);
+});
+
+plannerConfirm.addEventListener("click", () => {
+  if (currentMultiSelection.length === 0) {
+    showToast("1つ以上選択してください");
+    return;
+  }
+  advancePlanner([...currentMultiSelection]);
 });
 
 addCartButtons.forEach((button) => {
