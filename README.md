@@ -2,6 +2,10 @@
 
 ## JT-OTA mock
 
-Static mockup for a luxury inbound travel app concept.
+スマートフォン操作を前提にした、JT-OTA向け高級インバウンド旅行アプリの静的モックです。
 
-Open `index.html` in a browser, or serve this directory with any static file server.
+- 画面本文は日本語表示
+- 多言語切り替えUI付き
+- 来日前プラン作成、旅程確認、コンシェルジェ相談、ガイド連絡、限定体験、帰国後ショッピングを収録
+
+`index.html` をブラウザで開くか、このディレクトリを静的ファイルサーバーで配信してください。

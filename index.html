@@ -1,295 +1,245 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>JT-OTA Luxury Japan Concierge Mock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>JT-OTA スマートフォンモック</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="JT-OTA product overview">
-        <div class="brand">
-          <span class="brand-mark">JT</span>
-          <div>
-            <p class="eyebrow">Luxury inbound travel</p>
-            <h1>JT-OTA</h1>
+    <main class="prototype-stage" aria-label="JT-OTA smartphone app mock">
+      <section class="phone" aria-label="JT-OTA mobile app screen">
+        <header class="app-header">
+          <div class="status-row" aria-label="status bar">
+            <span>9:41</span>
+            <span>5G 100%</span>
           </div>
-        </div>
 
-        <nav class="nav" aria-label="Primary mock sections">
-          <a href="#home" class="nav-link active">Home</a>
-          <a href="#planner" class="nav-link">Planner</a>
-          <a href="#itinerary" class="nav-link">Itinerary</a>
-          <a href="#concierge" class="nav-link">Concierge</a>
-          <a href="#shop" class="nav-link">Shop</a>
-        </nav>
-
-        <div class="guest-card">
-          <p class="eyebrow">Current guest</p>
-          <h2>Mr. Alexander Smith</h2>
-          <p>Arriving in Tokyo on Apr 18</p>
-          <div class="guest-status">
-            <span></span>
-            Concierge online
+          <div class="top-bar">
+            <div>
+              <p class="eyebrow">Luxury Japan Concierge</p>
+              <h1>JT-OTA</h1>
+            </div>
+            <button class="icon-button" type="button" aria-label="通知">●</button>
           </div>
-        </div>
-      </aside>
 
-      <main>
-        <section class="hero" id="home">
-          <div class="hero-copy">
-            <p class="eyebrow">Before, during, and after Japan</p>
-            <h2>Your private gateway to Japan.</h2>
+          <div class="language-card" aria-label="言語切り替え">
+            <span>表示言語</span>
+            <div class="language-switch" role="group" aria-label="language switcher">
+              <button class="language-option active" type="button" data-language="日本語">日本語</button>
+              <button class="language-option" type="button" data-language="English">EN</button>
+              <button class="language-option" type="button" data-language="中文">中文</button>
+              <button class="language-option" type="button" data-language="한국어">KR</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="app-content">
+          <section class="hero-card" id="home">
+            <p class="eyebrow">来日前・滞在中・帰国後まで</p>
+            <h2>専属コンシェルジュと作る、日本滞在。</h2>
             <p>
-              Build a tailored itinerary before arrival, receive live concierge and guide support
-              in Japan, then continue purchasing curated souvenirs after returning home.
+              旅程作成、現地サポート、プライベートガイド、帰国後のお土産配送まで
+              スマートフォンだけで相談・確認できます。
             </p>
             <div class="hero-actions">
-              <a href="#planner" class="button primary">Create journey</a>
-              <a href="#concierge" class="button secondary">Ask concierge</a>
+              <a class="primary-action" href="#planner">旅程を作る</a>
+              <a class="secondary-action" href="#concierge">相談する</a>
             </div>
-          </div>
+          </section>
 
-          <div class="phone-frame" aria-label="Mobile app mock preview">
-            <div class="phone-top">
-              <span>9:41</span>
-              <span>JT-OTA</span>
-            </div>
-            <div class="mobile-card dark">
-              <p class="eyebrow">Today in Kyoto</p>
-              <h3>Private Zen Temple Visit</h3>
-              <p>10:00 pickup · English guide · smart casual</p>
-            </div>
-            <div class="mobile-grid">
-              <button>Change plan</button>
-              <button>Book car</button>
-              <button>Interpreter</button>
-              <button>Emergency</button>
-            </div>
-            <div class="mobile-card">
-              <p class="eyebrow">Concierge note</p>
-              <p>Your kaiseki reservation has been moved to a private room at 19:30.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="metrics" aria-label="Service phases">
-          <article>
-            <strong>01</strong>
-            <span>Pre-arrival planning</span>
-          </article>
-          <article>
-            <strong>02</strong>
-            <span>In-destination concierge</span>
-          </article>
-          <article>
-            <strong>03</strong>
-            <span>Private guide service</span>
-          </article>
-          <article>
-            <strong>04</strong>
-            <span>Post-trip shopping</span>
-          </article>
-        </section>
-
-        <section class="content-section" id="planner">
-          <div class="section-heading">
-            <p class="eyebrow">Pre-arrival</p>
-            <h2>Journey planner</h2>
-            <p>富裕層旅行者の好みを短い質問で把握し、コンシェルジェ提案へつなげます。</p>
-          </div>
-
-          <div class="planner-layout">
-            <div class="preference-panel">
-              <h3>What kind of Japan experience do you prefer?</h3>
-              <div class="choice-grid">
-                <button class="choice active">Traditional culture</button>
-                <button class="choice">Luxury dining</button>
-                <button class="choice">Private shopping</button>
-                <button class="choice">Art & architecture</button>
-                <button class="choice">Wellness retreat</button>
-                <button class="choice">Family experience</button>
-              </div>
-
-              <div class="form-grid">
-                <label>
-                  Cities
-                  <span>Tokyo, Kyoto, Naoshima</span>
-                </label>
-                <label>
-                  Guests
-                  <span>2 adults</span>
-                </label>
-                <label>
-                  Pace
-                  <span>Relaxed, private transport</span>
-                </label>
-                <label>
-                  Budget
-                  <span>Premium / Bespoke</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="proposal-card">
-              <p class="eyebrow">Concierge proposal</p>
-              <h3>7-day cultural immersion</h3>
-              <ul>
-                <li>Private tea ceremony with master host</li>
-                <li>Michelin kaiseki dinner in Gion</li>
-                <li>After-hours gallery visit in Naoshima</li>
-              </ul>
-              <button class="button primary">Request this route</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="content-section" id="itinerary">
-          <div class="section-heading">
-            <p class="eyebrow">During stay</p>
-            <h2>Live itinerary</h2>
-            <p>日別の予定、送迎、服装、担当ガイド、変更依頼をカードで表示します。</p>
-          </div>
-
-          <div class="timeline">
-            <article class="timeline-card">
-              <time>09:30</time>
+          <section class="today-card" aria-label="本日の予定">
+            <div class="section-title-row">
               <div>
-                <h3>Hotel pickup</h3>
-                <p>Mercedes-Benz V-Class · The Ritz-Carlton Kyoto lobby</p>
+                <p class="eyebrow">本日の予定</p>
+                <h2>京都・文化体験</h2>
               </div>
-              <span class="tag">Driver assigned</span>
-            </article>
-            <article class="timeline-card featured">
-              <time>10:00</time>
-              <div>
-                <h3>Private Zen temple visit</h3>
-                <p>Closed-door tour with English-speaking cultural guide</p>
-              </div>
-              <button class="small-button">Request change</button>
-            </article>
-            <article class="timeline-card">
-              <time>13:00</time>
-              <div>
-                <h3>Kaiseki lunch</h3>
-                <p>Private room · Dietary notes confirmed</p>
-              </div>
-              <span class="tag">Confirmed</span>
-            </article>
-          </div>
-        </section>
-
-        <section class="split-section" id="concierge">
-          <div class="chat-panel">
-            <div class="section-heading compact">
-              <p class="eyebrow">24/7 support</p>
-              <h2>Concierge chat</h2>
+              <span class="pill">確定済み</span>
             </div>
+            <div class="schedule-list">
+              <article>
+                <time>09:30</time>
+                <div>
+                  <h3>ホテル送迎</h3>
+                  <p>メルセデス V-Class / ロビー集合</p>
+                </div>
+              </article>
+              <article>
+                <time>10:00</time>
+                <div>
+                  <h3>非公開寺院の特別拝観</h3>
+                  <p>英語ガイド同行・服装はスマートカジュアル</p>
+                </div>
+              </article>
+              <article>
+                <time>19:30</time>
+                <div>
+                  <h3>祇園 懐石ディナー</h3>
+                  <p>個室予約 / 食事制限確認済み</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel" id="planner">
+            <div class="section-title-row">
+              <div>
+                <p class="eyebrow">来日前</p>
+                <h2>旅程プラン作成</h2>
+              </div>
+              <span class="step">1/4</span>
+            </div>
+
+            <p class="panel-copy">興味のあるテーマを選ぶと、専属コンシェルジュが提案を作成します。</p>
+            <div class="choice-grid">
+              <button class="choice active" type="button">伝統文化</button>
+              <button class="choice" type="button">美食</button>
+              <button class="choice" type="button">買い物</button>
+              <button class="choice" type="button">アート</button>
+              <button class="choice" type="button">温泉</button>
+              <button class="choice" type="button">家族旅行</button>
+            </div>
+
+            <div class="input-list">
+              <div><span>都市</span><strong>東京、京都、直島</strong></div>
+              <div><span>人数</span><strong>大人2名</strong></div>
+              <div><span>移動</span><strong>専用車中心</strong></div>
+              <div><span>予算</span><strong>プレミアム</strong></div>
+            </div>
+          </section>
+
+          <section class="panel" id="concierge">
+            <div class="section-title-row">
+              <div>
+                <p class="eyebrow">24時間対応</p>
+                <h2>コンシェルジェ</h2>
+              </div>
+              <span class="online-dot">オンライン</span>
+            </div>
+
             <div class="chat-window" id="chatWindow">
               <div class="message concierge">
                 <span>Concierge</span>
-                <p>Good morning. Your guide Yuki will meet you at 9:20 in the lobby.</p>
+                <p>おはようございます。本日は9:20にガイドのYukiがロビーでお待ちします。</p>
               </div>
               <div class="message guest">
                 <span>You</span>
-                <p>Can you arrange a quiet sushi counter for tomorrow evening?</p>
+                <p>明日の夜、静かな寿司カウンターを手配できますか？</p>
               </div>
               <div class="message concierge">
                 <span>Concierge</span>
-                <p>Yes. I will prepare two private counter options and confirm availability.</p>
+                <p>承知しました。個室または貸切に近い候補を確認してご提案します。</p>
               </div>
             </div>
-            <div class="quick-actions">
-              <button data-message="Please change tonight's dinner reservation.">Change dinner</button>
-              <button data-message="Please arrange a private car for this afternoon.">Book car</button>
-              <button data-message="I need an interpreter for shopping.">Interpreter</button>
-              <button data-message="I need urgent medical support.">Emergency</button>
-            </div>
-          </div>
 
-          <div class="guide-panel">
-            <p class="eyebrow">Private guide</p>
-            <h2>Yuki Nakamura</h2>
-            <p>English / French · Art, architecture, history</p>
-            <div class="guide-card">
+            <div class="quick-actions" aria-label="クイック相談">
+              <button type="button" data-message="今夜の夕食予約を変更したいです。">夕食変更</button>
+              <button type="button" data-message="午後の専用車を手配してください。">専用車</button>
+              <button type="button" data-message="買い物に通訳をお願いしたいです。">通訳</button>
+              <button type="button" data-message="緊急サポートが必要です。">緊急</button>
+            </div>
+          </section>
+
+          <section class="guide-card" id="guide">
+            <p class="eyebrow">プライベートガイド</p>
+            <div class="guide-profile">
               <span class="avatar">YN</span>
               <div>
-                <h3>Tomorrow: Naoshima art tour</h3>
-                <p>Meeting point, ferry tickets, and gallery access are ready.</p>
+                <h2>中村 由紀</h2>
+                <p>英語・フランス語 / 美術・建築・歴史</p>
               </div>
             </div>
-            <button class="button secondary">Message guide</button>
-          </div>
-        </section>
+            <div class="guide-note">
+              <strong>明日：直島アートツアー</strong>
+              <p>集合場所、フェリーチケット、ギャラリー入場枠を準備済みです。</p>
+            </div>
+            <button class="full-button" type="button">ガイドに連絡</button>
+          </section>
 
-        <section class="content-section">
-          <div class="section-heading">
-            <p class="eyebrow">Upsell</p>
-            <h2>Exclusive experiences</h2>
-            <p>現地で追加購入しやすい、限定体験・高単価オプションの一覧です。</p>
-          </div>
+          <section class="panel" id="experience">
+            <div class="section-title-row">
+              <div>
+                <p class="eyebrow">追加体験</p>
+                <h2>限定オプション</h2>
+              </div>
+              <a href="#concierge">相談</a>
+            </div>
 
-          <div class="experience-grid">
-            <article>
-              <span>Private</span>
-              <h3>Sushi counter takeover</h3>
-              <p>Master chef, private seating, sake pairing.</p>
-              <strong>From ¥500,000</strong>
-            </article>
-            <article>
-              <span>Cultural</span>
-              <h3>Kyoto artisan studio</h3>
-              <p>Meet textile, incense, and ceramic masters.</p>
-              <strong>From ¥180,000</strong>
-            </article>
-            <article>
-              <span>Mobility</span>
-              <h3>Helicopter transfer</h3>
-              <p>Tokyo skyline flight with private airport transfer.</p>
-              <strong>From ¥750,000</strong>
-            </article>
-          </div>
-        </section>
+            <div class="experience-list">
+              <article>
+                <span>Private</span>
+                <h3>寿司カウンター貸切</h3>
+                <p>名店の職人、ペアリング、日本語通訳を手配。</p>
+                <strong>¥500,000〜</strong>
+              </article>
+              <article>
+                <span>Culture</span>
+                <h3>京都職人工房ツアー</h3>
+                <p>染織、香、陶芸の工房を非公開で訪問。</p>
+                <strong>¥180,000〜</strong>
+              </article>
+              <article>
+                <span>Mobility</span>
+                <h3>ヘリ移動</h3>
+                <p>東京上空フライトと専用車送迎をセットで提供。</p>
+                <strong>¥750,000〜</strong>
+              </article>
+            </div>
+          </section>
 
-        <section class="content-section shop-section" id="shop">
-          <div class="section-heading">
-            <p class="eyebrow">After trip</p>
-            <h2>Souvenir shop & international shipping</h2>
-            <p>旅行中に見た商品やコンシェルジェ推薦品を帰国後も購入・海外配送できます。</p>
-          </div>
+          <section class="panel shop-panel" id="shop">
+            <div class="section-title-row">
+              <div>
+                <p class="eyebrow">帰国後</p>
+                <h2>お土産購入・海外配送</h2>
+              </div>
+              <span id="cartCount">0点</span>
+            </div>
+            <p class="panel-copy">旅先で見た商品や推薦品を帰国後も購入し、海外住所へ配送できます。</p>
 
-          <div class="shop-toolbar">
-            <span>Ship to: New York, USA</span>
-            <strong id="cartCount">0 items</strong>
-          </div>
+            <div class="product-list">
+              <article class="product-card">
+                <div class="product-art tea"></div>
+                <div>
+                  <h3>京都 プレミアム茶器セット</h3>
+                  <p>抹茶、煎茶、茶筅のギフトセット。</p>
+                  <strong>¥42,000</strong>
+                </div>
+                <button class="add-cart" type="button">追加</button>
+              </article>
+              <article class="product-card">
+                <div class="product-art ceramic"></div>
+                <div>
+                  <h3>作家物 抹茶碗</h3>
+                  <p>京都の工房で制作された一点物。</p>
+                  <strong>¥68,000</strong>
+                </div>
+                <button class="add-cart" type="button">追加</button>
+              </article>
+              <article class="product-card">
+                <div class="product-art whiskey"></div>
+                <div>
+                  <h3>ジャパニーズウイスキーギフト</h3>
+                  <p>輸出条件を確認して配送手配。</p>
+                  <strong>¥120,000</strong>
+                </div>
+                <button class="add-cart" type="button">追加</button>
+              </article>
+            </div>
+          </section>
+        </div>
 
-          <div class="product-grid">
-            <article class="product-card">
-              <div class="product-art tea"></div>
-              <h3>Premium Kyoto Tea Set</h3>
-              <p>Curated matcha, sencha, and handmade whisk.</p>
-              <strong>¥42,000</strong>
-              <button class="add-cart">Add to cart</button>
-            </article>
-            <article class="product-card">
-              <div class="product-art ceramic"></div>
-              <h3>Handcrafted Matcha Bowl</h3>
-              <p>One-of-a-kind ceramic bowl from a Kyoto studio.</p>
-              <strong>¥68,000</strong>
-              <button class="add-cart">Add to cart</button>
-            </article>
-            <article class="product-card">
-              <div class="product-art whiskey"></div>
-              <h3>Japanese Whisky Gift</h3>
-              <p>Concierge-selected bottle with export guidance.</p>
-              <strong>¥120,000</strong>
-              <button class="add-cart">Add to cart</button>
-            </article>
-          </div>
-        </section>
-      </main>
-    </div>
+        <nav class="bottom-nav" aria-label="主要メニュー">
+          <a class="active" href="#home"><span>⌂</span>ホーム</a>
+          <a href="#planner"><span>＋</span>プラン</a>
+          <a href="#concierge"><span>✉</span>相談</a>
+          <a href="#experience"><span>◇</span>体験</a>
+          <a href="#shop"><span>□</span>購入</a>
+        </nav>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+    </main>
 
     <script src="script.js"></script>
   </body>
