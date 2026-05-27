@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>JT-OTA スマートフォンモック</title>
-    <link rel="stylesheet" href="styles.css?v=20260527-tabs-mypage" />
+    <link rel="stylesheet" href="styles.css?v=20260527-luxury-ai-guide" />
   </head>
   <body>
     <main class="prototype-stage" aria-label="JT-OTA smartphone app mock">
@@ -17,39 +17,39 @@
 
           <div class="top-bar">
             <div>
-              <p class="eyebrow">Luxury Japan Concierge</p>
+              <p class="eyebrow">Private Japan Concierge</p>
               <h1>JT-OTA</h1>
             </div>
-            <button class="icon-button" type="button" aria-label="通知">●</button>
-          </div>
-
-          <div class="language-card" aria-label="言語切り替え">
-            <span>表示言語</span>
-            <div class="language-switch" role="group" aria-label="language switcher">
-              <button class="language-option active" type="button" data-language="日本語">日本語</button>
-              <button class="language-option" type="button" data-language="English">EN</button>
-              <button class="language-option" type="button" data-language="中文">中文</button>
-              <button class="language-option" type="button" data-language="한국어">KR</button>
-            </div>
+            <label class="language-select" aria-label="表示言語">
+              <span>Language</span>
+              <select id="languageSelect">
+                <option value="ja" selected>日本語</option>
+                <option value="en">English</option>
+                <option value="zh">中文</option>
+                <option value="ko">한국어</option>
+              </select>
+            </label>
           </div>
         </header>
 
         <div class="app-content">
           <section class="app-screen active" id="screen-home" data-screen="home" aria-label="ホーム画面">
             <article class="hero-card">
-              <p class="eyebrow">来日前・滞在中・帰国後まで</p>
-              <h2>専属コンシェルジュと作る、日本滞在。</h2>
-              <p>
-                下部メニューから必要な機能へ切り替え。AI旅程作成、滞在中の相談、
-                お土産配送、MyPage登録をスマートフォンで完結できます。
-              </p>
-              <div class="hero-actions">
-                <button class="primary-action" type="button" data-open-screen="plan">AIで旅程作成</button>
-                <button class="secondary-action" type="button" data-open-screen="concierge">相談する</button>
+              <div class="hero-overlay">
+                <p class="eyebrow">Before, During, After Japan</p>
+                <h2>上質な日本滞在を、AIと専属サポートで。</h2>
+                <p>
+                  旅程作成、AIガイドによる観光説明、限定体験、お土産配送、MyPage登録まで、
+                  富裕層ゲスト向けに設計されたスマートフォン体験です。
+                </p>
+                <div class="hero-actions">
+                  <button class="primary-action" type="button" data-open-screen="plan">AIで旅程作成</button>
+                  <button class="secondary-action" type="button" data-open-screen="guide">AIガイドを選ぶ</button>
+                </div>
               </div>
             </article>
 
-            <article class="today-card">
+            <article class="today-card glass-card">
               <div class="section-title-row">
                 <div>
                   <p class="eyebrow">本日の予定</p>
@@ -69,7 +69,7 @@
                   <time>10:00</time>
                   <div>
                     <h3>非公開寺院の特別拝観</h3>
-                    <p>英語ガイド同行・スマートカジュアル</p>
+                    <p>AIガイド解説＋現地サポート同行</p>
                   </div>
                 </article>
                 <article>
@@ -85,7 +85,7 @@
             <article class="panel">
               <div class="section-title-row">
                 <div>
-                  <p class="eyebrow">おすすめ</p>
+                  <p class="eyebrow">Quick Access</p>
                   <h2>次にできること</h2>
                 </div>
               </div>
@@ -94,9 +94,13 @@
                   <span>AIコンシェルジェに旅程を相談</span>
                   <strong>人数・都市・美食・予算から提案</strong>
                 </button>
+                <button type="button" data-open-screen="guide">
+                  <span>AIガイドを選んで観光説明を聞く</span>
+                  <strong>キャラクターごとの口調で案内</strong>
+                </button>
                 <button type="button" data-open-screen="mypage">
                   <span>MyPageを登録</span>
-                  <strong>好みや食べ物のNGを保存</strong>
+                  <strong>旅の好みや食事制限を保存</strong>
                 </button>
               </div>
             </article>
@@ -106,7 +110,7 @@
             <article class="panel">
               <div class="section-title-row">
                 <div>
-                  <p class="eyebrow">来日前</p>
+                  <p class="eyebrow">Pre-arrival Planning</p>
                   <h2>AI旅程プランナー</h2>
                 </div>
                 <span class="step" id="plannerProgress">1/5</span>
@@ -141,85 +145,115 @@
                 <ul>
                   <li>東京：到着日専用車送迎、銀座ショッピング、寿司または鉄板焼き</li>
                   <li>京都：非公開寺院、茶道体験、祇園の懐石ディナー</li>
-                  <li>直島：アート鑑賞、専属ガイド、帰国後のお土産配送手配</li>
+                  <li>直島：アート鑑賞、AIガイド解説、帰国後のお土産配送手配</li>
                 </ul>
-                <button class="full-button" type="button" data-open-screen="concierge">このプランで相談する</button>
+                <button class="full-button" type="button" data-open-screen="guide">AIガイドを選んで旅を始める</button>
               </div>
 
               <button class="text-button" id="plannerReset" type="button" hidden>最初から作り直す</button>
             </article>
           </section>
 
-          <section class="app-screen" id="screen-concierge" data-screen="concierge" aria-label="コンシェルジェ画面">
-            <article class="panel">
+          <section class="app-screen" id="screen-guide" data-screen="guide" aria-label="AIガイド画面">
+            <article class="panel guide-panel">
               <div class="section-title-row">
                 <div>
-                  <p class="eyebrow">24時間対応</p>
-                  <h2>コンシェルジェ</h2>
+                  <p class="eyebrow">AI Guide</p>
+                  <h2>AIガイドを選ぶ</h2>
                 </div>
-                <span class="online-dot">オンライン</span>
+                <span class="online-dot">会話対応</span>
+              </div>
+              <p class="panel-copy">
+                旅の雰囲気に合わせてAIガイドのキャラクターを選択。観光地の歴史、見どころ、食文化、
+                マナーを会話形式で説明します。
+              </p>
+
+              <div class="guide-selector" aria-label="AIガイドキャラクター選択">
+                <button class="guide-option active" type="button" data-guide="anime">
+                  <span class="guide-avatar anime">萌</span>
+                  <strong>萌え系アニメガイド</strong>
+                  <small>明るく楽しく、写真映えも提案</small>
+                </button>
+                <button class="guide-option" type="button" data-guide="student">
+                  <span class="guide-avatar student">紬</span>
+                  <strong>女子大学生ガイド</strong>
+                  <small>親しみやすく、最新スポットに詳しい</small>
+                </button>
+                <button class="guide-option" type="button" data-guide="scholar">
+                  <span class="guide-avatar scholar">匠</span>
+                  <strong>博識なおじさんガイド</strong>
+                  <small>歴史・文化背景を深く解説</small>
+                </button>
+                <button class="guide-option" type="button" data-guide="traveler">
+                  <span class="guide-avatar traveler">航</span>
+                  <strong>旅行好き30代男性ガイド</strong>
+                  <small>実用的でテンポよく案内</small>
+                </button>
               </div>
 
-              <div class="chat-window" id="chatWindow">
-                <div class="message concierge">
-                  <span>Concierge</span>
-                  <p>おはようございます。本日は9:20にガイドのYukiがロビーでお待ちします。</p>
-                </div>
-                <div class="message guest">
-                  <span>You</span>
-                  <p>明日の夜、静かな寿司カウンターを手配できますか？</p>
-                </div>
-                <div class="message concierge">
-                  <span>Concierge</span>
-                  <p>承知しました。個室または貸切に近い候補を確認してご提案します。</p>
+              <div class="selected-guide-card">
+                <div class="guide-profile">
+                  <span class="guide-avatar anime" id="selectedGuideAvatar">萌</span>
+                  <div>
+                    <p class="eyebrow">Selected Guide</p>
+                    <h3 id="selectedGuideName">萌え系アニメガイド・Momo</h3>
+                    <p id="selectedGuideTone">明るく、親しみやすく、写真映えポイントも交えて説明します。</p>
+                  </div>
                 </div>
               </div>
 
-              <div class="quick-actions" aria-label="クイック相談">
-                <button type="button" data-message="今夜の夕食予約を変更したいです。">夕食変更</button>
-                <button type="button" data-message="午後の専用車を手配してください。">専用車</button>
-                <button type="button" data-message="買い物に通訳をお願いしたいです。">通訳</button>
-                <button type="button" data-message="緊急サポートが必要です。">緊急</button>
-              </div>
-            </article>
-
-            <article class="guide-card">
-              <p class="eyebrow">プライベートガイド</p>
-              <div class="guide-profile">
-                <span class="avatar">YN</span>
-                <div>
-                  <h2>中村 由紀</h2>
-                  <p>英語・フランス語 / 美術・建築・歴史</p>
+              <div class="ai-guide-chat" aria-label="AIガイド会話">
+                <div class="guide-chat-window" id="guideChat" aria-live="polite">
+                  <div class="guide-message guide">
+                    <span>Momo</span>
+                    <p>こんにちは。今日は京都の見どころを、楽しくわかりやすくご案内します。知りたい観光地を選んでください。</p>
+                  </div>
+                </div>
+                <div class="guide-prompts" aria-label="観光地の質問候補">
+                  <button type="button" data-topic="fushimi">伏見稲荷の見どころ</button>
+                  <button type="button" data-topic="kinkakuji">金閣寺の歴史</button>
+                  <button type="button" data-topic="gion">祇園の楽しみ方</button>
+                  <button type="button" data-topic="naoshima">直島アート解説</button>
                 </div>
               </div>
-              <div class="guide-note">
-                <strong>明日：直島アートツアー</strong>
-                <p>集合場所、フェリーチケット、ギャラリー入場枠を準備済みです。</p>
-              </div>
-              <button class="full-button" type="button">ガイドに連絡</button>
             </article>
           </section>
 
-          <section class="app-screen" id="screen-shop" data-screen="shop" aria-label="購入画面">
+          <section class="app-screen" id="screen-shop" data-screen="shop" aria-label="体験・購入画面">
             <article class="panel">
               <div class="section-title-row">
                 <div>
-                  <p class="eyebrow">追加体験</p>
-                  <h2>限定オプション</h2>
+                  <p class="eyebrow">Exclusive Experiences</p>
+                  <h2>写真で選ぶ限定体験</h2>
                 </div>
               </div>
-              <div class="experience-list">
-                <article>
-                  <span>Private</span>
-                  <h3>寿司カウンター貸切</h3>
-                  <p>名店の職人、ペアリング、日本語通訳を手配。</p>
-                  <strong>¥500,000〜</strong>
+              <div class="experience-list photo-list">
+                <article class="photo-card">
+                  <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=900&q=80" alt="高級寿司カウンター" />
+                  <div>
+                    <span>Private Dining</span>
+                    <h3>寿司カウンター貸切</h3>
+                    <p>名店の職人、ペアリング、日本語通訳を手配。会話の距離感まで上質に整えます。</p>
+                    <strong>¥500,000〜</strong>
+                  </div>
                 </article>
-                <article>
-                  <span>Culture</span>
-                  <h3>京都職人工房ツアー</h3>
-                  <p>染織、香、陶芸の工房を非公開で訪問。</p>
-                  <strong>¥180,000〜</strong>
+                <article class="photo-card">
+                  <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=900&q=80" alt="京都の寺院と伝統文化" />
+                  <div>
+                    <span>Culture</span>
+                    <h3>京都職人工房ツアー</h3>
+                    <p>染織、香、陶芸の工房を非公開で訪問。職人との対話をAIガイドが補足します。</p>
+                    <strong>¥180,000〜</strong>
+                  </div>
+                </article>
+                <article class="photo-card">
+                  <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&w=900&q=80" alt="日本の街並みとプレミアム移動" />
+                  <div>
+                    <span>Mobility</span>
+                    <h3>ヘリ・専用車移動</h3>
+                    <p>移動時間も体験価値に変える、空港・ホテル・観光地間のプレミアム移動。</p>
+                    <strong>¥750,000〜</strong>
+                  </div>
                 </article>
               </div>
             </article>
@@ -227,37 +261,37 @@
             <article class="panel shop-panel">
               <div class="section-title-row">
                 <div>
-                  <p class="eyebrow">帰国後</p>
-                  <h2>お土産購入・海外配送</h2>
+                  <p class="eyebrow">Post-trip Shopping</p>
+                  <h2>写真で選ぶお土産配送</h2>
                 </div>
                 <span id="cartCount">0点</span>
               </div>
               <p class="panel-copy">旅先で見た商品や推薦品を帰国後も購入し、海外住所へ配送できます。</p>
 
-              <div class="product-list">
-                <article class="product-card">
-                  <div class="product-art tea"></div>
+              <div class="product-list photo-list">
+                <article class="product-card photo-card">
+                  <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?auto=format&fit=crop&w=900&q=80" alt="日本茶と茶器セット" />
                   <div>
                     <h3>京都 プレミアム茶器セット</h3>
-                    <p>抹茶、煎茶、茶筅のギフトセット。</p>
+                    <p>抹茶、煎茶、茶筅のギフトセット。帰国後の茶会にも使える上質な構成。</p>
                     <strong>¥42,000</strong>
                   </div>
                   <button class="add-cart" type="button">追加</button>
                 </article>
-                <article class="product-card">
-                  <div class="product-art ceramic"></div>
+                <article class="product-card photo-card">
+                  <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=900&q=80" alt="職人による陶器" />
                   <div>
                     <h3>作家物 抹茶碗</h3>
-                    <p>京都の工房で制作された一点物。</p>
+                    <p>京都の工房で制作された一点物。滞在中に訪れた工房から直接配送。</p>
                     <strong>¥68,000</strong>
                   </div>
                   <button class="add-cart" type="button">追加</button>
                 </article>
-                <article class="product-card">
-                  <div class="product-art whiskey"></div>
+                <article class="product-card photo-card">
+                  <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=900&q=80" alt="ジャパニーズウイスキー" />
                   <div>
                     <h3>ジャパニーズウイスキーギフト</h3>
-                    <p>輸出条件を確認して配送手配。</p>
+                    <p>希少銘柄をコンシェルジェが選定。輸出条件を確認して配送手配します。</p>
                     <strong>¥120,000</strong>
                   </div>
                   <button class="add-cart" type="button">追加</button>
@@ -270,7 +304,7 @@
             <article class="panel mypage-card">
               <div class="section-title-row">
                 <div>
-                  <p class="eyebrow">お客様情報</p>
+                  <p class="eyebrow">Guest Profile</p>
                   <h2>MyPage</h2>
                 </div>
                 <span class="pill">登録中</span>
@@ -287,18 +321,9 @@
               <form class="mypage-form" id="mypageForm">
                 <fieldset>
                   <legend>プロフィール</legend>
-                  <label>
-                    お名前
-                    <input type="text" value="Alexander Smith" />
-                  </label>
-                  <label>
-                    連絡先
-                    <input type="email" value="alex@example.com" />
-                  </label>
-                  <label>
-                    居住国
-                    <input type="text" value="United States" />
-                  </label>
+                  <label>お名前<input type="text" value="Alexander Smith" /></label>
+                  <label>連絡先<input type="email" value="alex@example.com" /></label>
+                  <label>居住国<input type="text" value="United States" /></label>
                 </fieldset>
 
                 <fieldset>
@@ -315,25 +340,16 @@
 
                 <fieldset>
                   <legend>食べ物の好き嫌い</legend>
-                  <label>
-                    好きな日本美食
-                    <input type="text" value="寿司、懐石、和牛、日本酒" />
-                  </label>
-                  <label>
-                    苦手・アレルギー
-                    <input type="text" value="甲殻類、辛すぎる料理" />
-                  </label>
-                  <label>
-                    食事制限・宗教対応
-                    <input type="text" placeholder="例：ハラール、ベジタリアン、グルテンフリー" />
-                  </label>
+                  <label>好きな日本美食<input type="text" value="寿司、懐石、和牛、日本酒" /></label>
+                  <label>苦手・アレルギー<input type="text" value="甲殻類、辛すぎる料理" /></label>
+                  <label>食事制限・宗教対応<input type="text" placeholder="例：ハラール、ベジタリアン、グルテンフリー" /></label>
                 </fieldset>
 
                 <fieldset>
                   <legend>サポート希望</legend>
                   <div class="chip-grid" data-chip-group="support">
                     <button class="chip active" type="button">専用車</button>
-                    <button class="chip active" type="button">英語ガイド</button>
+                    <button class="chip active" type="button">AIガイド</button>
                     <button class="chip" type="button">通訳同行</button>
                     <button class="chip" type="button">医療サポート</button>
                   </div>
@@ -348,8 +364,8 @@
         <nav class="bottom-nav" aria-label="主要メニュー">
           <button class="active" type="button" data-screen-target="home"><span>⌂</span>ホーム</button>
           <button type="button" data-screen-target="plan"><span>＋</span>プラン</button>
-          <button type="button" data-screen-target="concierge"><span>✉</span>相談</button>
-          <button type="button" data-screen-target="shop"><span>□</span>購入</button>
+          <button type="button" data-screen-target="guide"><span>✧</span>AIガイド</button>
+          <button type="button" data-screen-target="shop"><span>□</span>体験・購入</button>
           <button type="button" data-screen-target="mypage"><span>○</span>MyPage</button>
         </nav>
 
@@ -357,6 +373,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=20260527-tabs-mypage"></script>
+    <script src="script.js?v=20260527-luxury-ai-guide"></script>
   </body>
 </html>
