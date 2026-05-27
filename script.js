@@ -18,6 +18,8 @@ const guidePrompts = document.querySelectorAll(".guide-prompts button");
 const selectedGuideAvatar = document.querySelector("#selectedGuideAvatar");
 const selectedGuideName = document.querySelector("#selectedGuideName");
 const selectedGuideTone = document.querySelector("#selectedGuideTone");
+const selectedGuideRole = document.querySelector("#selectedGuideRole");
+const selectedGuideLook = document.querySelector("#selectedGuideLook");
 const chipButtons = document.querySelectorAll(".chip");
 const mypageForm = document.querySelector("#mypageForm");
 
@@ -45,34 +47,38 @@ const summaryLabels = {
 
 const guideProfiles = {
   anime: {
-    avatar: "萌",
     className: "anime",
-    name: "萌え系アニメガイド・Momo",
-    shortName: "Momo",
+    name: "Luna Grace",
+    role: "萌え系アニメガイド",
+    shortName: "Luna",
+    look: "外観：ピンクのツインテール、桜色のミニ着物ジャケット、星形イヤリング。",
     tone: "明るく、親しみやすく、写真映えポイントも交えて説明します。",
     style: "かわいくテンポよく",
   },
   student: {
-    avatar: "紬",
     className: "student",
-    name: "女子大学生ガイド・Tsumugi",
-    shortName: "Tsumugi",
+    name: "Emma Reed",
+    role: "若い女子大学生ガイド",
+    shortName: "Emma",
+    look: "外観：柔らかなブラウンボブ、白ニット、上品なチェックストール。",
     tone: "友達のように親しみやすく、最新のカフェや散策ルートも提案します。",
     style: "親しみやすく等身大に",
   },
   scholar: {
-    avatar: "匠",
     className: "scholar",
-    name: "博識なおじさんガイド・Takumi",
-    shortName: "Takumi",
+    name: "Arthur Blake",
+    role: "博識なおじさんガイド",
+    shortName: "Arthur",
+    look: "外観：シルバーグレーの髪、丸眼鏡、ネイビージャケットと革手帳。",
     tone: "歴史、宗教、美術の背景まで、深く落ち着いた語り口で説明します。",
     style: "文化背景を丁寧に",
   },
   traveler: {
-    avatar: "航",
     className: "traveler",
-    name: "旅行好き30代男性ガイド・Ko",
-    shortName: "Ko",
+    name: "Kai Bennett",
+    role: "旅行大好き30代男性ガイド",
+    shortName: "Kai",
+    look: "外観：短い黒髪、カーキのトラベルジャケット、カメラストラップ。",
     tone: "実用情報、移動のコツ、現地での楽しみ方をテンポよく案内します。",
     style: "実用的で軽快に",
   },
@@ -168,11 +174,12 @@ const updateSelectedGuide = (guideKey) => {
   activeGuide = guideKey;
   const guide = guideProfiles[guideKey];
   guideOptions.forEach((option) => option.classList.toggle("active", option.dataset.guide === guideKey));
-  selectedGuideAvatar.textContent = guide.avatar;
-  selectedGuideAvatar.className = `guide-avatar ${guide.className}`;
+  selectedGuideAvatar.className = `character-portrait ${guide.className}`;
   selectedGuideName.textContent = guide.name;
+  selectedGuideRole.textContent = guide.role;
   selectedGuideTone.textContent = guide.tone;
-  guideChat.innerHTML = `<div class="guide-message guide"><span>${guide.shortName}</span><p>${guide.name}です。${guide.tone}知りたい観光地を選んでください。</p></div>`;
+  selectedGuideLook.textContent = guide.look;
+  guideChat.innerHTML = `<div class="guide-message guide"><span>${guide.shortName}</span><p>${guide.name}です。${guide.role}として、${guide.tone}知りたい観光地を選んでください。</p></div>`;
   showToast(`${guide.name}を選択しました`);
 };
 

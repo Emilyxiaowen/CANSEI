@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>JT-OTA スマートフォンモック</title>
-    <link rel="stylesheet" href="styles.css?v=20260527-luxury-ai-guide" />
+    <link rel="stylesheet" href="styles.css?v=20260527-guide-design" />
   </head>
   <body>
     <main class="prototype-stage" aria-label="JT-OTA smartphone app mock">
@@ -170,34 +170,40 @@
 
               <div class="guide-selector" aria-label="AIガイドキャラクター選択">
                 <button class="guide-option active" type="button" data-guide="anime">
-                  <span class="guide-avatar anime">萌</span>
-                  <strong>萌え系アニメガイド</strong>
-                  <small>明るく楽しく、写真映えも提案</small>
+                  <span class="character-portrait anime" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <strong>Luna Grace</strong>
+                  <em>萌え系アニメガイド</em>
+                  <small>外観：ピンクのツインテール、桜色のミニ着物ジャケット、星形イヤリング。</small>
                 </button>
                 <button class="guide-option" type="button" data-guide="student">
-                  <span class="guide-avatar student">紬</span>
-                  <strong>女子大学生ガイド</strong>
-                  <small>親しみやすく、最新スポットに詳しい</small>
+                  <span class="character-portrait student" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <strong>Emma Reed</strong>
+                  <em>若い女子大学生ガイド</em>
+                  <small>外観：柔らかなブラウンボブ、白ニット、上品なチェックストール。</small>
                 </button>
                 <button class="guide-option" type="button" data-guide="scholar">
-                  <span class="guide-avatar scholar">匠</span>
-                  <strong>博識なおじさんガイド</strong>
-                  <small>歴史・文化背景を深く解説</small>
+                  <span class="character-portrait scholar" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <strong>Arthur Blake</strong>
+                  <em>博識なおじさんガイド</em>
+                  <small>外観：シルバーグレーの髪、丸眼鏡、ネイビージャケットと革手帳。</small>
                 </button>
                 <button class="guide-option" type="button" data-guide="traveler">
-                  <span class="guide-avatar traveler">航</span>
-                  <strong>旅行好き30代男性ガイド</strong>
-                  <small>実用的でテンポよく案内</small>
+                  <span class="character-portrait traveler" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
+                  <strong>Kai Bennett</strong>
+                  <em>旅行大好き30代男性ガイド</em>
+                  <small>外観：短い黒髪、カーキのトラベルジャケット、カメラストラップ。</small>
                 </button>
               </div>
 
               <div class="selected-guide-card">
                 <div class="guide-profile">
-                  <span class="guide-avatar anime" id="selectedGuideAvatar">萌</span>
+                  <span class="character-portrait anime" id="selectedGuideAvatar" aria-hidden="true"><span class="hair"></span><span class="face"></span><span class="body"></span><span class="accent"></span></span>
                   <div>
                     <p class="eyebrow">Selected Guide</p>
-                    <h3 id="selectedGuideName">萌え系アニメガイド・Momo</h3>
+                    <h3 id="selectedGuideName">Luna Grace</h3>
+                    <p class="guide-role" id="selectedGuideRole">萌え系アニメガイド</p>
                     <p id="selectedGuideTone">明るく、親しみやすく、写真映えポイントも交えて説明します。</p>
+                    <p class="guide-look" id="selectedGuideLook">外観：ピンクのツインテール、桜色のミニ着物ジャケット、星形イヤリング。</p>
                   </div>
                 </div>
               </div>
@@ -205,8 +211,8 @@
               <div class="ai-guide-chat" aria-label="AIガイド会話">
                 <div class="guide-chat-window" id="guideChat" aria-live="polite">
                   <div class="guide-message guide">
-                    <span>Momo</span>
-                    <p>こんにちは。今日は京都の見どころを、楽しくわかりやすくご案内します。知りたい観光地を選んでください。</p>
+                    <span>Luna</span>
+                    <p>こんにちは。Luna Graceです。今日は京都の見どころを、明るく楽しくご案内します。知りたい観光地を選んでください。</p>
                   </div>
                 </div>
                 <div class="guide-prompts" aria-label="観光地の質問候補">
@@ -373,6 +379,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=20260527-luxury-ai-guide"></script>
+    <script src="script.js?v=20260527-guide-design"></script>
   </body>
 </html>

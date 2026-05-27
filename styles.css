@@ -138,20 +138,114 @@ h1 { margin-bottom: 0; font-family: Georgia, "Times New Roman", serif; font-size
 .text-button { width: 100%; min-height: 42px; border: 0; border-radius: 999px; background: transparent; color: var(--gold-dark); margin-top: 8px; }
 
 .guide-selector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0; }
-.guide-option { border: 1px solid rgba(198, 154, 91, 0.16); border-radius: 22px; background: #fffaf1; color: var(--ink); padding: 12px; text-align: left; }
-.guide-option.active { border-color: rgba(198, 154, 91, 0.7); box-shadow: 0 12px 28px rgba(122, 86, 42, 0.16); }
-.guide-option strong, .guide-option small { display: block; }
-.guide-option strong { margin-top: 10px; font-size: 0.92rem; }
-.guide-option small { color: var(--muted); line-height: 1.45; margin-top: 5px; }
-.guide-avatar, .avatar { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 21px; color: #17120b; font-weight: 950; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35); }
-.guide-avatar.anime { background: linear-gradient(135deg, #ffd1e8, #c69aef); }
-.guide-avatar.student { background: linear-gradient(135deg, #d8f3ff, #9ed0f6); }
-.guide-avatar.scholar { background: linear-gradient(135deg, #e7d2aa, #a87945); }
-.guide-avatar.traveler { background: linear-gradient(135deg, #c8f0d8, #76b796); }
+.guide-option {
+  border: 1px solid rgba(198, 154, 91, 0.16);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fffaf1, #f3e3c8);
+  color: var(--ink);
+  padding: 12px;
+  text-align: left;
+  min-height: 218px;
+  overflow: hidden;
+  position: relative;
+}
+.guide-option::after {
+  content: "";
+  position: absolute;
+  inset: auto -32px -42px auto;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(198, 154, 91, 0.12);
+}
+.guide-option.active { border-color: rgba(198, 154, 91, 0.72); box-shadow: 0 14px 30px rgba(122, 86, 42, 0.18); }
+.guide-option strong, .guide-option em, .guide-option small { display: block; position: relative; z-index: 1; }
+.guide-option strong { margin-top: 10px; font-family: Georgia, "Times New Roman", serif; font-size: 1.04rem; }
+.guide-option em { color: var(--gold-dark); font-size: 0.76rem; font-style: normal; font-weight: 900; margin-top: 3px; }
+.guide-option small { color: var(--muted); line-height: 1.48; margin-top: 7px; }
+.character-portrait {
+  --hair: #2b1a16;
+  --skin: #f1c7a2;
+  --jacket: #26314e;
+  --accent: #c69a5b;
+  display: block;
+  width: 78px;
+  height: 92px;
+  border-radius: 28px;
+  background: radial-gradient(circle at 50% 16%, rgba(255,255,255,0.75), transparent 22px), linear-gradient(160deg, rgba(255,255,255,0.5), rgba(198,154,91,0.18));
+  border: 1px solid rgba(198,154,91,0.22);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 10px 20px rgba(17, 26, 47, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+.character-portrait .hair,
+.character-portrait .face,
+.character-portrait .body,
+.character-portrait .accent { position: absolute; display: block; }
+.character-portrait .hair {
+  left: 18px;
+  top: 10px;
+  width: 42px;
+  height: 36px;
+  border-radius: 22px 22px 15px 15px;
+  background: var(--hair);
+  box-shadow: -17px 12px 0 -7px var(--hair), 17px 12px 0 -7px var(--hair);
+}
+.character-portrait .face {
+  left: 22px;
+  top: 24px;
+  width: 34px;
+  height: 38px;
+  border-radius: 45% 45% 48% 48%;
+  background: var(--skin);
+  box-shadow: inset 7px 0 0 rgba(255,255,255,0.16);
+}
+.character-portrait .face::before,
+.character-portrait .face::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2b2019;
+}
+.character-portrait .face::before { left: 9px; }
+.character-portrait .face::after { right: 9px; }
+.character-portrait .body {
+  left: 13px;
+  bottom: -1px;
+  width: 52px;
+  height: 34px;
+  border-radius: 17px 17px 8px 8px;
+  background: var(--jacket);
+}
+.character-portrait .accent {
+  right: 13px;
+  top: 40px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: -45px 14px 0 -3px var(--accent);
+}
+.character-portrait.anime { --hair: #ef86c2; --jacket: #f3a4c8; --accent: #ffd85e; }
+.character-portrait.anime .hair { box-shadow: -20px 10px 0 -5px var(--hair), 20px 10px 0 -5px var(--hair), -26px 24px 0 -10px var(--hair), 26px 24px 0 -10px var(--hair); }
+.character-portrait.student { --hair: #7b4a2f; --jacket: #f7f2e8; --accent: #8ea4cf; }
+.character-portrait.student .body { box-shadow: inset 0 10px 0 #caa36a; }
+.character-portrait.scholar { --hair: #b7b1a5; --jacket: #1b2942; --accent: #6c4b2a; }
+.character-portrait.scholar .face { box-shadow: inset 7px 0 0 rgba(255,255,255,0.16), 0 15px 0 -11px rgba(88,69,52,0.7); }
+.character-portrait.scholar .face::before { box-shadow: 12px 0 0 #2b2019, 6px 0 0 5px transparent; }
+.character-portrait.traveler { --hair: #202124; --jacket: #657553; --accent: #2f445f; }
+.character-portrait.traveler .accent { border-radius: 3px; width: 16px; height: 11px; }
+.avatar { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 21px; color: #17120b; font-weight: 950; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35); }
 .selected-guide-card { border: 1px solid rgba(198,154,91,0.2); border-radius: 22px; background: linear-gradient(135deg, #fffaf1, #f3e3c8); padding: 14px; margin-bottom: 12px; }
-.guide-profile { gap: 13px; }
-.guide-profile h3 { margin: 0 0 4px; }
+.guide-profile { align-items: flex-start; gap: 13px; }
+.guide-profile .character-portrait { flex: 0 0 78px; }
+.guide-profile h3 { margin: 0 0 4px; font-family: Georgia, "Times New Roman", serif; }
 .guide-profile p:not(.eyebrow) { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
+.guide-role { color: var(--gold-dark) !important; font-weight: 900; margin-bottom: 4px !important; }
+.guide-look { margin-top: 8px !important; }
 
 .photo-list { display: grid; gap: 12px; }
 .photo-card { overflow: hidden; border: 1px solid rgba(198,154,91,0.18); border-radius: 24px; background: #fffaf1; box-shadow: 0 14px 34px rgba(17, 26, 47, 0.1); }
