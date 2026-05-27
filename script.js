@@ -1,5 +1,6 @@
-const navLinks = document.querySelectorAll(".bottom-nav a");
-const sections = [...document.querySelectorAll("section[id]")];
+const navButtons = document.querySelectorAll(".bottom-nav button");
+const screens = document.querySelectorAll(".app-screen");
+const openScreenButtons = document.querySelectorAll("[data-open-screen]");
 const appContent = document.querySelector(".app-content");
 const languageOptions = document.querySelectorAll(".language-option");
 const quickActions = document.querySelectorAll(".quick-actions button");
@@ -13,6 +14,8 @@ const plannerProgress = document.querySelector("#plannerProgress");
 const plannerProposal = document.querySelector("#plannerProposal");
 const plannerReset = document.querySelector("#plannerReset");
 const plannerSummaryItems = document.querySelectorAll("[data-summary]");
+const chipButtons = document.querySelectorAll(".chip");
+const mypageForm = document.querySelector("#mypageForm");
 
 let cartItems = 0;
 let toastTimer;
@@ -62,20 +65,16 @@ const showToast = (message) => {
   toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
 };
 
-const setActiveNav = () => {
-  const currentScroll = appContent.scrollTop;
-  const activeSection = sections
-    .slice()
-    .reverse()
-    .find((section) => currentScroll >= section.offsetTop - appContent.offsetTop - 120);
-
-  if (!activeSection) {
-    return;
-  }
-
-  navLinks.forEach((link) => {
-    link.classList.toggle("active", link.getAttribute("href") === `#${activeSection.id}`);
+const switchScreen = (screenName) => {
+  screens.forEach((screen) => {
+    screen.classList.toggle("active", screen.dataset.screen === screenName);
   });
+
+  navButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.screenTarget === screenName);
+  });
+
+  appContent.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 const addPlannerMessage = (type, speaker, text) => {
@@ -171,18 +170,12 @@ const resetPlanner = () => {
   showToast("AIヒアリングを最初から開始します");
 };
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target) {
-      return;
-    }
+navButtons.forEach((button) => {
+  button.addEventListener("click", () => switchScreen(button.dataset.screenTarget));
+});
 
-    event.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    navLinks.forEach((item) => item.classList.remove("active"));
-    link.classList.add("active");
-  });
+openScreenButtons.forEach((button) => {
+  button.addEventListener("click", () => switchScreen(button.dataset.openScreen));
 });
 
 languageOptions.forEach((option) => {
@@ -226,7 +219,17 @@ addCartButtons.forEach((button) => {
   });
 });
 
+chipButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("active");
+  });
+});
+
+mypageForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  showToast("MyPageのお客様情報を保存しました");
+});
+
 plannerReset.addEventListener("click", resetPlanner);
-appContent.addEventListener("scroll", setActiveNav, { passive: true });
 renderPlannerOptions();
-setActiveNav();
+switchScreen("home");

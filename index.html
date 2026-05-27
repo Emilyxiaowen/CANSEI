@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>JT-OTA スマートフォンモック</title>
-    <link rel="stylesheet" href="styles.css?v=20260527-ai-planner" />
+    <link rel="stylesheet" href="styles.css?v=20260527-tabs-mypage" />
   </head>
   <body>
     <main class="prototype-stage" aria-label="JT-OTA smartphone app mock">
@@ -35,231 +35,328 @@
         </header>
 
         <div class="app-content">
-          <section class="hero-card" id="home">
-            <p class="eyebrow">来日前・滞在中・帰国後まで</p>
-            <h2>専属コンシェルジュと作る、日本滞在。</h2>
-            <p>
-              旅程作成、現地サポート、プライベートガイド、帰国後のお土産配送まで
-              スマートフォンだけで相談・確認できます。
-            </p>
-            <div class="hero-actions">
-              <a class="primary-action" href="#planner">旅程を作る</a>
-              <a class="secondary-action" href="#concierge">相談する</a>
-            </div>
+          <section class="app-screen active" id="screen-home" data-screen="home" aria-label="ホーム画面">
+            <article class="hero-card">
+              <p class="eyebrow">来日前・滞在中・帰国後まで</p>
+              <h2>専属コンシェルジュと作る、日本滞在。</h2>
+              <p>
+                下部メニューから必要な機能へ切り替え。AI旅程作成、滞在中の相談、
+                お土産配送、MyPage登録をスマートフォンで完結できます。
+              </p>
+              <div class="hero-actions">
+                <button class="primary-action" type="button" data-open-screen="plan">AIで旅程作成</button>
+                <button class="secondary-action" type="button" data-open-screen="concierge">相談する</button>
+              </div>
+            </article>
+
+            <article class="today-card">
+              <div class="section-title-row">
+                <div>
+                  <p class="eyebrow">本日の予定</p>
+                  <h2>京都・文化体験</h2>
+                </div>
+                <span class="pill">確定済み</span>
+              </div>
+              <div class="schedule-list">
+                <article>
+                  <time>09:30</time>
+                  <div>
+                    <h3>ホテル送迎</h3>
+                    <p>メルセデス V-Class / ロビー集合</p>
+                  </div>
+                </article>
+                <article>
+                  <time>10:00</time>
+                  <div>
+                    <h3>非公開寺院の特別拝観</h3>
+                    <p>英語ガイド同行・スマートカジュアル</p>
+                  </div>
+                </article>
+                <article>
+                  <time>19:30</time>
+                  <div>
+                    <h3>祇園 懐石ディナー</h3>
+                    <p>個室予約 / 食事制限確認済み</p>
+                  </div>
+                </article>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="section-title-row">
+                <div>
+                  <p class="eyebrow">おすすめ</p>
+                  <h2>次にできること</h2>
+                </div>
+              </div>
+              <div class="action-list">
+                <button type="button" data-open-screen="plan">
+                  <span>AIコンシェルジェに旅程を相談</span>
+                  <strong>人数・都市・美食・予算から提案</strong>
+                </button>
+                <button type="button" data-open-screen="mypage">
+                  <span>MyPageを登録</span>
+                  <strong>好みや食べ物のNGを保存</strong>
+                </button>
+              </div>
+            </article>
           </section>
 
-          <section class="today-card" aria-label="本日の予定">
-            <div class="section-title-row">
-              <div>
-                <p class="eyebrow">本日の予定</p>
-                <h2>京都・文化体験</h2>
+          <section class="app-screen" id="screen-plan" data-screen="plan" aria-label="AI旅程プランナー画面">
+            <article class="panel">
+              <div class="section-title-row">
+                <div>
+                  <p class="eyebrow">来日前</p>
+                  <h2>AI旅程プランナー</h2>
+                </div>
+                <span class="step" id="plannerProgress">1/5</span>
               </div>
-              <span class="pill">確定済み</span>
-            </div>
-            <div class="schedule-list">
-              <article>
-                <time>09:30</time>
-                <div>
-                  <h3>ホテル送迎</h3>
-                  <p>メルセデス V-Class / ロビー集合</p>
+
+              <p class="panel-copy">
+                AIコンシェルジェが会話形式でヒアリングし、人数・好み・都市・美食・予算に合わせた
+                オーダーメイド旅程を提案します。
+              </p>
+
+              <div class="ai-planner-card" aria-label="AI会話型プラン作成">
+                <div class="ai-chat" id="plannerChat" aria-live="polite">
+                  <div class="ai-message ai">
+                    <span>AI Concierge</span>
+                    <p>ようこそ。まず、ご旅行の人数を教えてください。</p>
+                  </div>
                 </div>
-              </article>
-              <article>
-                <time>10:00</time>
-                <div>
-                  <h3>非公開寺院の特別拝観</h3>
-                  <p>英語ガイド同行・服装はスマートカジュアル</p>
-                </div>
-              </article>
-              <article>
-                <time>19:30</time>
-                <div>
-                  <h3>祇園 懐石ディナー</h3>
-                  <p>個室予約 / 食事制限確認済み</p>
-                </div>
-              </article>
-            </div>
+                <div class="ai-options" id="plannerOptions" aria-label="回答候補"></div>
+              </div>
+
+              <div class="ai-summary-grid" aria-label="ヒアリング内容">
+                <div data-summary="guests"><span>人数</span><strong>未選択</strong></div>
+                <div data-summary="preference"><span>旅の好み</span><strong>未選択</strong></div>
+                <div data-summary="cities"><span>行きたい都市</span><strong>未選択</strong></div>
+                <div data-summary="cuisine"><span>日本美食</span><strong>未選択</strong></div>
+                <div data-summary="budget"><span>予算</span><strong>未選択</strong></div>
+              </div>
+
+              <div class="ai-proposal" id="plannerProposal" hidden>
+                <p class="eyebrow">AI提案プラン</p>
+                <h3>7日間 プレミアム日本滞在</h3>
+                <ul>
+                  <li>東京：到着日専用車送迎、銀座ショッピング、寿司または鉄板焼き</li>
+                  <li>京都：非公開寺院、茶道体験、祇園の懐石ディナー</li>
+                  <li>直島：アート鑑賞、専属ガイド、帰国後のお土産配送手配</li>
+                </ul>
+                <button class="full-button" type="button" data-open-screen="concierge">このプランで相談する</button>
+              </div>
+
+              <button class="text-button" id="plannerReset" type="button" hidden>最初から作り直す</button>
+            </article>
           </section>
 
-          <section class="panel" id="planner">
-            <div class="section-title-row">
-              <div>
-                <p class="eyebrow">来日前</p>
-                <h2>AI旅程プランナー</h2>
-              </div>
-              <span class="step" id="plannerProgress">1/5</span>
-            </div>
-
-            <p class="panel-copy">
-              AIコンシェルジェが会話形式でヒアリングし、人数・好み・都市・美食・予算に合わせた
-              オーダーメイド旅程を提案します。
-            </p>
-
-            <div class="ai-planner-card" aria-label="AI会話型プラン作成">
-              <div class="ai-chat" id="plannerChat" aria-live="polite">
-                <div class="ai-message ai">
-                  <span>AI Concierge</span>
-                  <p>ようこそ。まず、ご旅行の人数を教えてください。</p>
-                </div>
-              </div>
-              <div class="ai-options" id="plannerOptions" aria-label="回答候補"></div>
-            </div>
-
-            <div class="ai-summary-grid" aria-label="ヒアリング内容">
-              <div data-summary="guests"><span>人数</span><strong>未選択</strong></div>
-              <div data-summary="preference"><span>旅の好み</span><strong>未選択</strong></div>
-              <div data-summary="cities"><span>行きたい都市</span><strong>未選択</strong></div>
-              <div data-summary="cuisine"><span>日本美食</span><strong>未選択</strong></div>
-              <div data-summary="budget"><span>予算</span><strong>未選択</strong></div>
-            </div>
-
-            <div class="ai-proposal" id="plannerProposal" hidden>
-              <p class="eyebrow">AI提案プラン</p>
-              <h3>7日間 プレミアム日本滞在</h3>
-              <ul>
-                <li>東京：到着日専用車送迎、銀座ショッピング、寿司または鉄板焼き</li>
-                <li>京都：非公開寺院、茶道体験、祇園の懐石ディナー</li>
-                <li>直島：アート鑑賞、専属ガイド、帰路のお土産配送手配</li>
-              </ul>
-              <button class="full-button" type="button">このプランでコンシェルジェに相談</button>
-            </div>
-
-            <button class="text-button" id="plannerReset" type="button" hidden>最初から作り直す</button>
-          </section>
-
-          <section class="panel" id="concierge">
-            <div class="section-title-row">
-              <div>
-                <p class="eyebrow">24時間対応</p>
-                <h2>コンシェルジェ</h2>
-              </div>
-              <span class="online-dot">オンライン</span>
-            </div>
-
-            <div class="chat-window" id="chatWindow">
-              <div class="message concierge">
-                <span>Concierge</span>
-                <p>おはようございます。本日は9:20にガイドのYukiがロビーでお待ちします。</p>
-              </div>
-              <div class="message guest">
-                <span>You</span>
-                <p>明日の夜、静かな寿司カウンターを手配できますか？</p>
-              </div>
-              <div class="message concierge">
-                <span>Concierge</span>
-                <p>承知しました。個室または貸切に近い候補を確認してご提案します。</p>
-              </div>
-            </div>
-
-            <div class="quick-actions" aria-label="クイック相談">
-              <button type="button" data-message="今夜の夕食予約を変更したいです。">夕食変更</button>
-              <button type="button" data-message="午後の専用車を手配してください。">専用車</button>
-              <button type="button" data-message="買い物に通訳をお願いしたいです。">通訳</button>
-              <button type="button" data-message="緊急サポートが必要です。">緊急</button>
-            </div>
-          </section>
-
-          <section class="guide-card" id="guide">
-            <p class="eyebrow">プライベートガイド</p>
-            <div class="guide-profile">
-              <span class="avatar">YN</span>
-              <div>
-                <h2>中村 由紀</h2>
-                <p>英語・フランス語 / 美術・建築・歴史</p>
-              </div>
-            </div>
-            <div class="guide-note">
-              <strong>明日：直島アートツアー</strong>
-              <p>集合場所、フェリーチケット、ギャラリー入場枠を準備済みです。</p>
-            </div>
-            <button class="full-button" type="button">ガイドに連絡</button>
-          </section>
-
-          <section class="panel" id="experience">
-            <div class="section-title-row">
-              <div>
-                <p class="eyebrow">追加体験</p>
-                <h2>限定オプション</h2>
-              </div>
-              <a href="#concierge">相談</a>
-            </div>
-
-            <div class="experience-list">
-              <article>
-                <span>Private</span>
-                <h3>寿司カウンター貸切</h3>
-                <p>名店の職人、ペアリング、日本語通訳を手配。</p>
-                <strong>¥500,000〜</strong>
-              </article>
-              <article>
-                <span>Culture</span>
-                <h3>京都職人工房ツアー</h3>
-                <p>染織、香、陶芸の工房を非公開で訪問。</p>
-                <strong>¥180,000〜</strong>
-              </article>
-              <article>
-                <span>Mobility</span>
-                <h3>ヘリ移動</h3>
-                <p>東京上空フライトと専用車送迎をセットで提供。</p>
-                <strong>¥750,000〜</strong>
-              </article>
-            </div>
-          </section>
-
-          <section class="panel shop-panel" id="shop">
-            <div class="section-title-row">
-              <div>
-                <p class="eyebrow">帰国後</p>
-                <h2>お土産購入・海外配送</h2>
-              </div>
-              <span id="cartCount">0点</span>
-            </div>
-            <p class="panel-copy">旅先で見た商品や推薦品を帰国後も購入し、海外住所へ配送できます。</p>
-
-            <div class="product-list">
-              <article class="product-card">
-                <div class="product-art tea"></div>
+          <section class="app-screen" id="screen-concierge" data-screen="concierge" aria-label="コンシェルジェ画面">
+            <article class="panel">
+              <div class="section-title-row">
                 <div>
-                  <h3>京都 プレミアム茶器セット</h3>
-                  <p>抹茶、煎茶、茶筅のギフトセット。</p>
-                  <strong>¥42,000</strong>
+                  <p class="eyebrow">24時間対応</p>
+                  <h2>コンシェルジェ</h2>
                 </div>
-                <button class="add-cart" type="button">追加</button>
-              </article>
-              <article class="product-card">
-                <div class="product-art ceramic"></div>
+                <span class="online-dot">オンライン</span>
+              </div>
+
+              <div class="chat-window" id="chatWindow">
+                <div class="message concierge">
+                  <span>Concierge</span>
+                  <p>おはようございます。本日は9:20にガイドのYukiがロビーでお待ちします。</p>
+                </div>
+                <div class="message guest">
+                  <span>You</span>
+                  <p>明日の夜、静かな寿司カウンターを手配できますか？</p>
+                </div>
+                <div class="message concierge">
+                  <span>Concierge</span>
+                  <p>承知しました。個室または貸切に近い候補を確認してご提案します。</p>
+                </div>
+              </div>
+
+              <div class="quick-actions" aria-label="クイック相談">
+                <button type="button" data-message="今夜の夕食予約を変更したいです。">夕食変更</button>
+                <button type="button" data-message="午後の専用車を手配してください。">専用車</button>
+                <button type="button" data-message="買い物に通訳をお願いしたいです。">通訳</button>
+                <button type="button" data-message="緊急サポートが必要です。">緊急</button>
+              </div>
+            </article>
+
+            <article class="guide-card">
+              <p class="eyebrow">プライベートガイド</p>
+              <div class="guide-profile">
+                <span class="avatar">YN</span>
                 <div>
-                  <h3>作家物 抹茶碗</h3>
-                  <p>京都の工房で制作された一点物。</p>
-                  <strong>¥68,000</strong>
+                  <h2>中村 由紀</h2>
+                  <p>英語・フランス語 / 美術・建築・歴史</p>
                 </div>
-                <button class="add-cart" type="button">追加</button>
-              </article>
-              <article class="product-card">
-                <div class="product-art whiskey"></div>
+              </div>
+              <div class="guide-note">
+                <strong>明日：直島アートツアー</strong>
+                <p>集合場所、フェリーチケット、ギャラリー入場枠を準備済みです。</p>
+              </div>
+              <button class="full-button" type="button">ガイドに連絡</button>
+            </article>
+          </section>
+
+          <section class="app-screen" id="screen-shop" data-screen="shop" aria-label="購入画面">
+            <article class="panel">
+              <div class="section-title-row">
                 <div>
-                  <h3>ジャパニーズウイスキーギフト</h3>
-                  <p>輸出条件を確認して配送手配。</p>
-                  <strong>¥120,000</strong>
+                  <p class="eyebrow">追加体験</p>
+                  <h2>限定オプション</h2>
                 </div>
-                <button class="add-cart" type="button">追加</button>
-              </article>
-            </div>
+              </div>
+              <div class="experience-list">
+                <article>
+                  <span>Private</span>
+                  <h3>寿司カウンター貸切</h3>
+                  <p>名店の職人、ペアリング、日本語通訳を手配。</p>
+                  <strong>¥500,000〜</strong>
+                </article>
+                <article>
+                  <span>Culture</span>
+                  <h3>京都職人工房ツアー</h3>
+                  <p>染織、香、陶芸の工房を非公開で訪問。</p>
+                  <strong>¥180,000〜</strong>
+                </article>
+              </div>
+            </article>
+
+            <article class="panel shop-panel">
+              <div class="section-title-row">
+                <div>
+                  <p class="eyebrow">帰国後</p>
+                  <h2>お土産購入・海外配送</h2>
+                </div>
+                <span id="cartCount">0点</span>
+              </div>
+              <p class="panel-copy">旅先で見た商品や推薦品を帰国後も購入し、海外住所へ配送できます。</p>
+
+              <div class="product-list">
+                <article class="product-card">
+                  <div class="product-art tea"></div>
+                  <div>
+                    <h3>京都 プレミアム茶器セット</h3>
+                    <p>抹茶、煎茶、茶筅のギフトセット。</p>
+                    <strong>¥42,000</strong>
+                  </div>
+                  <button class="add-cart" type="button">追加</button>
+                </article>
+                <article class="product-card">
+                  <div class="product-art ceramic"></div>
+                  <div>
+                    <h3>作家物 抹茶碗</h3>
+                    <p>京都の工房で制作された一点物。</p>
+                    <strong>¥68,000</strong>
+                  </div>
+                  <button class="add-cart" type="button">追加</button>
+                </article>
+                <article class="product-card">
+                  <div class="product-art whiskey"></div>
+                  <div>
+                    <h3>ジャパニーズウイスキーギフト</h3>
+                    <p>輸出条件を確認して配送手配。</p>
+                    <strong>¥120,000</strong>
+                  </div>
+                  <button class="add-cart" type="button">追加</button>
+                </article>
+              </div>
+            </article>
+          </section>
+
+          <section class="app-screen" id="screen-mypage" data-screen="mypage" aria-label="MyPage画面">
+            <article class="panel mypage-card">
+              <div class="section-title-row">
+                <div>
+                  <p class="eyebrow">お客様情報</p>
+                  <h2>MyPage</h2>
+                </div>
+                <span class="pill">登録中</span>
+              </div>
+
+              <div class="profile-hero">
+                <span class="avatar large">AS</span>
+                <div>
+                  <h3>Alexander Smith</h3>
+                  <p>New York, USA / 来日予定 2026年4月</p>
+                </div>
+              </div>
+
+              <form class="mypage-form" id="mypageForm">
+                <fieldset>
+                  <legend>プロフィール</legend>
+                  <label>
+                    お名前
+                    <input type="text" value="Alexander Smith" />
+                  </label>
+                  <label>
+                    連絡先
+                    <input type="email" value="alex@example.com" />
+                  </label>
+                  <label>
+                    居住国
+                    <input type="text" value="United States" />
+                  </label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>旅の好み</legend>
+                  <div class="chip-grid" data-chip-group="travel">
+                    <button class="chip active" type="button">伝統文化</button>
+                    <button class="chip active" type="button">美食</button>
+                    <button class="chip" type="button">アート</button>
+                    <button class="chip" type="button">温泉</button>
+                    <button class="chip" type="button">買い物</button>
+                    <button class="chip" type="button">家族向け</button>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend>食べ物の好き嫌い</legend>
+                  <label>
+                    好きな日本美食
+                    <input type="text" value="寿司、懐石、和牛、日本酒" />
+                  </label>
+                  <label>
+                    苦手・アレルギー
+                    <input type="text" value="甲殻類、辛すぎる料理" />
+                  </label>
+                  <label>
+                    食事制限・宗教対応
+                    <input type="text" placeholder="例：ハラール、ベジタリアン、グルテンフリー" />
+                  </label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>サポート希望</legend>
+                  <div class="chip-grid" data-chip-group="support">
+                    <button class="chip active" type="button">専用車</button>
+                    <button class="chip active" type="button">英語ガイド</button>
+                    <button class="chip" type="button">通訳同行</button>
+                    <button class="chip" type="button">医療サポート</button>
+                  </div>
+                </fieldset>
+
+                <button class="full-button" type="submit">お客様情報を保存</button>
+              </form>
+            </article>
           </section>
         </div>
 
         <nav class="bottom-nav" aria-label="主要メニュー">
-          <a class="active" href="#home"><span>⌂</span>ホーム</a>
-          <a href="#planner"><span>＋</span>プラン</a>
-          <a href="#concierge"><span>✉</span>相談</a>
-          <a href="#experience"><span>◇</span>体験</a>
-          <a href="#shop"><span>□</span>購入</a>
+          <button class="active" type="button" data-screen-target="home"><span>⌂</span>ホーム</button>
+          <button type="button" data-screen-target="plan"><span>＋</span>プラン</button>
+          <button type="button" data-screen-target="concierge"><span>✉</span>相談</button>
+          <button type="button" data-screen-target="shop"><span>□</span>購入</button>
+          <button type="button" data-screen-target="mypage"><span>○</span>MyPage</button>
         </nav>
 
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
       </section>
     </main>
 
-    <script src="script.js?v=20260527-ai-planner"></script>
+    <script src="script.js?v=20260527-tabs-mypage"></script>
   </body>
 </html>
